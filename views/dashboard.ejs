@@ -1,0 +1,49 @@
+<%- include('dashboard/imports/header'); -%>
+<main id="dashboard" class="flx">
+  <%- include('dashboard/imports/nav'); -%>
+  <div class="content">
+    <section id="sec-1">
+      <div class="top-nav">
+        <a href="/">LOGO</a>
+        <h3 class="f-size-xlrg">
+          Welcome
+          <span class="text-secondary">John Doe</span>
+        </h3>
+        <form action="" id="search-form">
+          <i class="lni lni-search"></i>
+          <input
+            type="text"
+            name="search"
+            id=""
+            placeholder="search for events"
+          />
+        </form>
+      </div>
+    </section>
+    <section id="sec-2">
+      <div class="grd grd-cl-4 cards">
+        <div class="card songs-agg">
+          <div class="agg-num center-align">
+            <h3 class="f-size-xlrg">2023</h3>
+          </div>
+          <p class="center-align">Songs</p>
+        </div>
+        <div class="card users-agg">
+          <div class="agg-num center-align">
+            <h3 class="f-size-xlrg">20232</h3>
+          </div>
+          <p class="center-align">Users</p>
+        </div>
+        <div class="card earnings-agg bg-dif">
+          <div class="agg-num center-align">
+            <h3 class="f-size-xlrg">20242444</h3>
+          </div>
+          <p class="center-align">Earnings</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<%- include('dashboard/imports/footer-nav'); -%>
+<script src="/js/dashboard.js"></script>
+<%- include('dashboard/imports/footer'); -%>

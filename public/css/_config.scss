@@ -1,0 +1,302 @@
+$base-color: #000;
+$base-color-2: #fff;
+$primary-color: #eba611;
+$secondary-color: #186b9b;
+
+@mixin easeOut {
+  transition: all 0.4s ease-out;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: karla;
+  color: $base-color-2;
+  @include easeOut();
+}
+
+body {
+  background-color: #1a1a1a;
+  background-image: radial-gradient(at 0% 0%, #1a1a1a 0, transparent 30%),
+    radial-gradient(at 50% 0%, #092738 0, transparent 50%),
+    radial-gradient(at 100% 0%, #412c05 0, transparent 50%);
+  background-repeat: no-repeat;
+  // background-attachment: fixed;
+}
+
+@font-face {
+  font-family: lato;
+  src: url(/fonts/Lato-Light.ttf);
+}
+
+@font-face {
+  font-family: karla;
+  src: url(../fonts/Karla/static/Karla-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: karla-bold;
+  src: url(../fonts/Karla/static/Karla-Bold.ttf);
+}
+
+@font-face {
+  font-family: karla-xbold;
+  src: url(../fonts/Karla/static/Karla-ExtraBold.ttf);
+}
+
+//@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@mixin easeOut {
+  transition: all 0.4s ease-out;
+}
+
+a {
+  &.section-btn {
+    cursor: pointer;
+  }
+}
+
+.bold-txt {
+  font-family: karla-bold;
+}
+
+.bold-txt-2 {
+  font-family: karla-xbold;
+}
+
+.t-up {
+  text-transform: uppercase;
+}
+
+.primary-color {
+  color: $base-color-2;
+}
+
+.secondary-color {
+  color: $base-color;
+}
+
+i {
+  color: $base-color-2;
+}
+
+.center-align {
+  text-align: center;
+}
+
+.flx {
+  display: flex;
+
+  &.jc-btn {
+    justify-content: space-between;
+  }
+
+  &.js-evn {
+    justify-content: space-evenly;
+  }
+
+  &.js-arnd {
+    justify-content: space-around;
+  }
+
+  &.jc-center {
+    justify-content: center;
+  }
+}
+
+p.error {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.grd {
+  display: grid;
+  grid-gap: 1rem;
+
+  &.grd-cl-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &.grd-cl-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.grd-cl-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &.grd-cl-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &.grd-cl-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &.grd-cl-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  &.grd-cl-7 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+//box shadow
+.bx-sdw {
+  box-shadow: 0 10px 6px -6px #141414;
+  // filter: drop-shadow(0 0 20px rgb(0, 0, 0));
+}
+
+// headers
+h1,
+h2,
+h3,
+h4,
+h5 {
+  // font-family: karla-bold;
+  &.f-size-reg {
+    font-size: 1.2rem;
+  }
+
+  &.f-size-med {
+    font-size: 1.3rem;
+  }
+
+  &.f-size-lrg {
+    font-size: 1.5rem;
+  }
+
+  &.f-size-xlrg {
+    font-size: 2rem;
+  }
+
+  &.f-size-xxlrg {
+    font-size: 2.5rem;
+  }
+}
+
+// buttons
+.btn {
+  padding: 0.5rem 1.2rem;
+  background-color: $secondary-color;
+  color: $base-color-2;
+  border-radius: 0.3rem;
+  cursor: pointer;
+
+  &.btn-m {
+    padding: 0.7rem 1.5rem;
+  }
+
+  &.btn-rounded {
+    padding: 1rem;
+    border-radius: 50%;
+  }
+
+  &:hover {
+    padding: 0.6rem 1.3rem;
+  }
+}
+
+.backdrop {
+  background: rgba(0, 0, 0, 0.164);
+  -webkit-backdrop-filter: blur(0.6rem);
+  backdrop-filter: blur(0.6rem);
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+// style notifications
+.notification-msg-card {
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+  width: 300px;
+  z-index: 100;
+  visibility: hidden;
+  transform: translate3d(0, -100%, 0);
+  background: $base-color-2;
+  border-radius: 0.5rem;
+  &.show {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+  }
+  .hdr {
+    padding: 1.3rem 0;
+    background: darken($color: $secondary-color, $amount: 3);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+  .body {
+    padding: 2rem 1rem;
+    p {
+      &.success {
+        color: #057505;
+      }
+      &.error {
+        color: #ff0000;
+      }
+    }
+  }
+  .footer {
+    padding: 1rem 0 1rem 0;
+    background: #f5f4f4;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    position: relative;
+    a {
+      position: absolute;
+      bottom: 1rem;
+      &:nth-child(1) {
+        left: 2rem;
+      }
+      &:nth-child(2) {
+        right: 2rem;
+      }
+    }
+  }
+}
+
+//Media guery Mixins
+@mixin mediaSm {
+  @media screen and (max-width: 500px) {
+    @content;
+  }
+}
+
+@mixin mediaMd {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mediaLg {
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    @content;
+  }
+}
+
+@mixin mediaXL {
+  @media screen and (min-width: 1171px) {
+    @content;
+  }
+}
