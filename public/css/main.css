@@ -526,6 +526,10 @@ main#landing-page .main-content .nav-icons {
   padding: 0.3rem 2rem 0 0;
 }
 
+main#landing-page .main-content .nav-icons .btn-wrappers .btn-wrapper {
+  margin: 0 1rem;
+}
+
 main#landing-page .main-content .nav-icons .user-wrapper {
   padding: 0 0.5rem;
 }

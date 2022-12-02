@@ -49,11 +49,13 @@ export const checkAdmin = (req, res, next) => {
     jwt.verify(token, "music stream token", async (err, decodedToken) => {
       if (err) {
         res.locals.user = null;
+        // res.locals.admin = null;
         next();
       } else {
         let user = await User.findById(decodedToken.id);
 
         if (user.isAdmin) {
+          // res.locals.admin = true;
           next();
         } else {
           res.redirect("/");

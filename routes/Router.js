@@ -7,6 +7,7 @@ import {
   addmusic_post,
   artist_fetch_get,
   artist_music_fetch_post,
+  logout_get,
 } from "../controller/controller.js";
 const router = Router();
 import multer from "multer";
@@ -34,6 +35,7 @@ router.post("/fetch/search-data", music_search_post);
 router.post("/fetch/music-data", multipleUpload, addmusic_post);
 router.get("/fetch/artist-data", artist_fetch_get);
 router.post("/fetch/artist/music-data", artist_music_fetch_post);
+router.get("/auth/logout", logout_get);
 
 // function to generate code
 function genCode(size) {

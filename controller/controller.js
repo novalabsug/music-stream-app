@@ -103,10 +103,6 @@ export const addmusic_post = async (req, res) => {
       filename: req.files.musicFile[0].filename,
     });
 
-    // Music.watch().on("change", (data) => {
-    //   console.log(data);
-    // });
-
     if (music) {
       res.status(200).json({ response: "SUCCESS" });
     }
@@ -186,6 +182,16 @@ export const artist_music_fetch_post = async (req, res) => {
     const music = await Music.find({ artist });
 
     res.status(200).json({ music });
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+};
+
+export const logout_get = async (req, res) => {
+  try {
+    res.cookie("musicStream_JWT", "", { maxAge: 1 });
+    res.redirect("/");
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });

@@ -193,6 +193,11 @@ main {
       .nav-icons {
         // width: 30%;
         padding: 0.3rem 2rem 0 0;
+        .btn-wrappers {
+          .btn-wrapper {
+            margin: 0 1rem;
+          }
+        }
         .user-wrapper {
           padding: 0 0.5rem;
         }

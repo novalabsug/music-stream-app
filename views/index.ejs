@@ -22,8 +22,15 @@
             >
           </h3>
         </div>
-        <div class="btn-wrapper">
-          <a href="/auth/logout" class="btn">logout</a>
+        <div class="btn-wrappers flx">
+          <% if(user.isAdmin) { %>
+          <div class="btn-wrapper">
+            <a href="/admin" class="btn">Dashboard</a>
+          </div>
+          <% } %>
+          <div class="btn-wrapper">
+            <a href="/auth/logout" class="btn">logout</a>
+          </div>
         </div>
         <% } else { %>
         <div class="btn-wrapper">
