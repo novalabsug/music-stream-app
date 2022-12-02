@@ -25,8 +25,13 @@ app.use(morgan("dev"));
 
 const PORT = process.env.PORT || 3000;
 
+const atlas_URI =
+  "mongodb+srv://admin:O2avaqG5zzSr2zyO@cluster0.8uvl4ha.mongodb.net/?retryWrites=true&w=majority";
+
+const URI = "mongodb://127.0.0.1:27017/music-stream";
+
 mongoose
-  .connect("mongodb://127.0.0.1:27017/music-stream", {
+  .connect(atlas_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -37,6 +42,7 @@ mongoose
 
 // Set routes
 app.get("*", checkUser);
+
 app.get("/", (req, res) => {
   res.render("index");
 });
