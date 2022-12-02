@@ -1,12 +1,13 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const authRoutes = require("./routes/authRoutes");
-// const custom = require("./custom/custom");
-// const { requireAuth, checkUser } = require("./middleware/middleware");
-require("dotenv").config();
-const morgan = require("morgan");
+import express from "express";
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import authRoutes from "./routes/Router.js";
+// import custom from "./custom/custom"
+import { requireAuth, checkUser, checkAdmin } from "./middleware/middleware.js";
+// require("dotenv").config();
+
+import morgan from "morgan";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"));
+// app.use(bodyParser.json({ limit: "30mb", extended: true }));
+// app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 const PORT = process.env.PORT || 3000;
 
@@ -33,26 +36,31 @@ mongoose
   .catch((err) => console.log(err));
 
 // Set routes
-// app.get("*", checkUser);
+app.get("*", checkUser);
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-// app.get("/dashboard", (req, res) => {
-//   res.render("dashboard");
-// });
+app.get("/admin", checkAdmin, requireAuth, (req, res) => {
+  res.render("dashboard");
+});
 
-// app.get("/dashboard/add-music", (req, res) => {
-//   res.render("add-music");
-// });
+app.get("/dashboard/add-music", checkAdmin, requireAuth, (req, res) => {
+  res.render("add-music");
+});
 
 app.get("/account", (req, res) => {
   res.render("account");
 });
 
+app.get("/artist/music/fetch", (req, res) => {
+  res.render("artist-music");
+});
+
 app.get("/404", (req, res) => {
   res.render("404");
 });
+
 app.use(authRoutes);
 
 // 404 page

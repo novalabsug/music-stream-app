@@ -70,11 +70,11 @@ a {
 }
 
 .primary-color {
-  color: $base-color-2;
+  color: $primary-color;
 }
 
 .secondary-color {
-  color: $base-color;
+  color: $secondary-color;
 }
 
 i {
@@ -167,7 +167,8 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+span {
   // font-family: karla-bold;
   &.f-size-reg {
     font-size: 1.2rem;

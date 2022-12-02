@@ -4,94 +4,58 @@
   <div class="main-content">
     <div class="flx jc-btn">
       <div class="search-form">
-        <form action="">
+        <form action="" class="search-form">
           <div class="input">
-            <input type="text" placeholder="search" />
+            <input type="text" placeholder="search" name="search" />
+            <p class="error search-error"></p>
             <i class="fa fa-search"></i>
           </div>
         </form>
       </div>
       <div class="nav-icons flx">
+        <% if(user) { %>
         <div class="user-wrapper">
-          <h3 class="bold-txt f-size-med">User #1</h3>
+          <h3 class="bold-txt f-size-med">
+            Hello,
+            <span class="bold-txt f-size-med primary-color"
+              ><%= user.lastname %></span
+            >
+          </h3>
         </div>
+        <div class="btn-wrapper">
+          <a href="/auth/logout" class="btn">logout</a>
+        </div>
+        <% } else { %>
         <div class="btn-wrapper">
           <a href="/account" class="btn">sign in</a>
         </div>
+        <% } %>
       </div>
     </div>
     <section class="sec-1">
-      <h3 class="f-size-xlrg primary-text bold-txt t-up">discover</h3>
-      <div class="music-cards-wrapper grd grd-cl-5">
-        <div class="card-wrapper backdrop">
-          <i class="fa fa-play" id="play-btn" data-id="0"></i>
-          <img src="/images/album-1.jpg" alt="" id="album-art" srcset="" />
-          <div class="card-wrapper-txt">
-            <a href=""
-              ><h3 id="artist-wrapper" class="primary-color">
-                Music Artist #1
-              </h3></a
-            >
-            <p id="title-wrapper">Music title #1</p>
-          </div>
-        </div>
-        <div class="card-wrapper backdrop">
-          <i class="fa fa-play" id="play-btn" data-id="1"></i>
-          <img src="/images/album-2.jpg" alt="" id="album-art" srcset="" />
-          <div class="card-wrapper-txt">
-            <a href=""
-              ><h3 id="artist-wrapper" class="primary-color">
-                Music Artist #2
-              </h3></a
-            >
-            <p id="title-wrapper">Music title #2</p>
-          </div>
-        </div>
-        <div class="card-wrapper backdrop">
-          <i class="fa fa-play" id="play-btn" data-id="2"></i>
-          <img src="/images/album-3.jpg" alt="" id="album-art" srcset="" />
-          <div class="card-wrapper-txt">
-            <a href=""
-              ><h3 id="artist-wrapper" class="primary-color">
-                Music Artist #3
-              </h3></a
-            >
-            <p id="title-wrapper">Music title #3</p>
-          </div>
-        </div>
-        <div class="card-wrapper backdrop">
-          <i class="fa fa-play" id="play-btn" data-id="3"></i>
-          <img src="/images/album-2.jpg" alt="" id="album-art" srcset="" />
-          <div class="card-wrapper-txt">
-            <a href=""
-              ><h3 id="artist-wrapper" class="primary-color">
-                Music Artist #4
-              </h3></a
-            >
-            <p id="title-wrapper">Music title #4</p>
-          </div>
-        </div>
-      </div>
+      <h3 class="f-size-xlrg primary-text bold-txt t-up hdr">discover</h3>
+      <div class="music-cards-wrapper grd grd-cl-5"></div>
     </section>
   </div>
 </main>
-<div id="audio-player" class="player-wrapper flx jc-btn">
+<div id="audio-player" class="player-wrapper shrinked flx jc-btn">
+  <i class="fa fa-angle-right" id="audio-player-shrink-btn"></i>
   <div class="now-playing-wrapper flx">
     <div class="img-wrapper">
       <img src="/images/black.jpg" id="player-music-album" alt="" srcset="" />
     </div>
     <div class="txt-wrapper">
-      <h3 class="primary-color" id="player-music-artist">_ _ _ _ _</h3>
+      <h3 class="secondary-color" id="player-music-artist">_ _ _ _ _</h3>
       <p id="player-music-title">_ _ _ _ _</p>
     </div>
   </div>
   <div class="controls-wrapper">
     <div class="wrapper-1 flx jc-center">
-      <i class="fa fa-repeat"></i>
+      <!-- <i class="fa fa-repeat"></i> -->
       <i class="fa fa-caret-left" id="prev"></i>
       <i class="fa fa-play" id="play"></i>
       <i class="fa fa-caret-right" id="next"></i>
-      <i class="fa fa-random"></i>
+      <!-- <i class="fa fa-random"></i> -->
     </div>
     <audio src="" id="audio"></audio>
     <div class="wrapper-2">
@@ -107,6 +71,7 @@
     </div>
   </div>
 </div>
-<!-- <script src="/js/index.js"></script> -->
+<%- include('imports/footer-nav'); -%>
 <script src="/js/musicplayer.js"></script>
-<%- include('imports/footer-nav'); -%> <%- include('imports/footer'); -%>
+<script src="/js/index.js"></script>
+<%- include('imports/footer'); -%>

@@ -7,6 +7,34 @@ nav {
   &.m-navbar {
     border: 0;
   }
+  &.dashboard-navbar {
+    height: 100vh;
+    .profile {
+      padding: 2rem 0 1rem 0;
+      .profile-img {
+        i {
+          font-size: 3rem;
+          margin: 0 3.5rem;
+        }
+      }
+      .profile-name {
+        padding: 1rem 0;
+        p {
+          font-size: 2rem;
+        }
+      }
+      a {
+        margin: 0 2rem;
+      }
+    }
+    ul {
+      li {
+        i {
+          margin: 0 1rem 0 0;
+        }
+      }
+    }
+  }
   ul {
     padding: 2rem 0;
     li {
@@ -19,6 +47,9 @@ nav {
       a {
         margin: 0.2rem 0.3rem;
         font-family: karla-bold;
+        &#artists-btn {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -32,6 +63,28 @@ nav {
   border-radius: 1rem;
   padding: 1rem 3rem;
   background: #a59b9b;
+  #audio-player-shrink-btn {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: $secondary-color;
+  }
+  &.shrinked {
+    left: auto;
+    .now-playing-wrapper {
+      width: 100%;
+    }
+    .controls-wrapper {
+      visibility: hidden;
+      width: 0;
+    }
+    .volume-wrapper {
+      visibility: hidden;
+      width: 0;
+    }
+  }
   .now-playing-wrapper {
     width: 30%;
     .img-wrapper {
@@ -51,6 +104,7 @@ nav {
   }
   .controls-wrapper {
     width: 40%;
+    visibility: visible;
     padding: 0.5rem 0;
     .wrapper-1 {
       padding: 0.5rem 0;
@@ -85,6 +139,7 @@ nav {
     }
   }
   .volume-wrapper {
+    visibility: visible;
     width: 30%;
     padding: 2rem 3rem;
     .volume-bar-wrapper {
@@ -151,6 +206,18 @@ main {
               padding: 0.8rem;
               border-radius: 0.5rem;
               position: relative;
+              &.artist-card-wrapper {
+                i {
+                  font-size: 6rem;
+                  margin: 2rem 3rem 1rem 3rem;
+                }
+                .card-wrapper-txt {
+                  padding: 0.5rem 0.3rem;
+                  h3 {
+                    cursor: pointer;
+                  }
+                }
+              }
               &:hover {
                 i {
                   &#play-btn {
@@ -188,6 +255,7 @@ main {
                 padding: 0 0 0.3rem 0;
                 h3 {
                   margin: 0.2rem 0;
+                  cursor: pointer;
                 }
               }
             }
@@ -234,15 +302,55 @@ main {
       }
     }
   }
-  &#register {
-  }
   &#page-not-found {
     padding: 2rem 2rem 3rem 2rem;
   }
   &#dashboard {
+    .content {
+      padding: 2rem 3rem;
+      width: 83%;
+      &#dashboard {
+        section {
+          &#sec-1 {
+            .top-nav {
+              padding: 2rem 0;
+              a {
+                font-size: 1.3rem;
+              }
+              h3 {
+                margin: 0.3rem 0;
+              }
+            }
+          }
+        }
+      }
+      &#add-music {
+        section {
+          &#sec-1 {
+            form {
+              padding: 3rem 0;
+              .form-input {
+                padding: 2rem 0;
+                .input {
+                  input {
+                    width: 100%;
+                    border: 1px solid $base-color-2;
+                    border-radius: 0.3rem;
+                    padding: 0.35rem 1rem;
+                    margin: 0.5rem 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 footer {
+  padding: 2rem 0 3rem 0;
   background-color: #1a1a1a;
+  border-top: 1.2px solid #505050;
 }

@@ -1,49 +1,152 @@
-const musicTab = document.querySelector("section.sec-2 .music-cards");
+// fetch and load music data
+const musicWrapper = document.querySelector("section .music-cards-wrapper");
 
-const handleMusicFetch = async () => {
-  try {
-    const res = await fetch("/music/fetch", {
-      method: "POST",
-      body: JSON.stringify({
-        loadded: "Page loaded",
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+HandleHttpRequests.handleFetchingData()
+  .then((result) => {
+    const Music = result;
 
-    const data = await res.json();
+    if (Music.length > 0) {
+      musicWrapper.className = "music-cards-wrapper grd grd-cl-5";
+      Music.forEach((music, index) => {
+        const card = document.createElement("div");
+        card.className = "card-wrapper backdrop";
+        card.setAttribute("data-target", `${music.filename}`);
+        card.innerHTML = `
+        <i class="fa fa-play" id="play-btn" data-id="${index}"></i>
+        <img src="/files/${music.album}" alt="" id="album-art" srcset="" />
+        <div class="card-wrapper-txt">
+          <a>
+            <h3 id="artist-wrapper" data-target="${music.artist}" class="primary-color">
+              ${music.artist}
+            </h3>
+          </a>
+          <p id="title-wrapper">${music.title}</p>
+        </div>
+      `;
 
-    let MusicArr = "";
-
-    if (data.music) {
-      MusicArr = data.music;
-    }
-
-    if (MusicArr.length > 0) {
-      MusicArr.forEach((music, key) => {
-        let div = document.createElement("div");
-        div.className = "music-card play-btn";
-        div.setAttribute("data-switch", `${key}`);
-        div.setAttribute("data-target", `${key}`);
-        div.innerHTML = `
-                <img src="/images/album-${
-                  Math.floor(Math.random() * 3) + 1 <= 0
-                    ? 1
-                    : Math.floor(Math.random() * 3) + 1
-                }.jpg" alt="" srcset="" />
-                <div class="txt">
-                <p>${music.title}</p>
-                <h3 class="f-size-reg">${music.artist}</h3>
-                </div>
-                `;
-
-        musicTab.append(div);
+        musicWrapper.append(card);
       });
-    }
-  } catch (error) {
-    let err = error;
-  }
-};
 
-handleMusicFetch();
+      handleMusicPlayer();
+    } else {
+      musicWrapper.className = "music-cards-wrapper";
+      musicWrapper.innerHTML = `<div class="empty-wrapper"><h3 class="center-align f-size-med">No music currently</p></div>`;
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+// handle search functionality
+const searchForm = document.querySelector("form.search-form");
+
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  HandleHttpRequests.handleMusicSearch(searchForm)
+    .then((result) => {
+      const Music = result;
+
+      musicWrapper.innerHTML = "";
+      musicWrapper.parentElement.querySelector("h3.hdr").innerHTML =
+        "Search results";
+
+      if (Music.length > 0) {
+        musicWrapper.className = "music-cards-wrapper grd grd-cl-5";
+        Music.forEach((music, index) => {
+          const card = document.createElement("div");
+          card.className = "card-wrapper backdrop";
+          card.setAttribute("data-target", `${music.filename}`);
+          card.innerHTML = `
+        <i class="fa fa-play" id="play-btn" data-id="${index}"></i>
+        <img src="/images/${music.album}" alt="" id="album-art" srcset="" />
+        <div class="card-wrapper-txt">
+          <a>
+          <h3 id="artist-wrapper" data-target="${music.artist}" class="primary-color">
+              ${music.artist}
+            </h3>
+          </a>
+          <p id="title-wrapper">${music.title}</p>
+        </div>
+      `;
+
+          musicWrapper.append(card);
+        });
+
+        handleMusicPlayer();
+      } else {
+        musicWrapper.className = "music-cards-wrapper";
+        musicWrapper.innerHTML = `<div class="empty-wrapper"><h3 class="center-align f-size-med">No search results found</p></div>`;
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// handle shrinking of music play
+const shrinkBtn = document.querySelector("#audio-player-shrink-btn");
+const musicPlayer = document.querySelector("#audio-player");
+
+shrinkBtn.addEventListener("click", () => {
+  if (musicPlayer.classList.contains("shrinked")) {
+    musicPlayer.classList.remove("shrinked");
+    shrinkBtn.className = "fa fa-angle-right";
+  } else {
+    musicPlayer.classList.add("shrinked");
+    shrinkBtn.className = "fa fa-angle-left";
+  }
+});
+
+// handle fetching and loading of artists
+const artistBtn = document.querySelector("#artists-btn");
+
+artistBtn.addEventListener("click", () => {
+  const musicCardsWrapper = document.querySelector(
+    ".sec-1 .music-cards-wrapper"
+  );
+
+  HandleHttpRequests.handleFetchingArtistData()
+    .then((result) => {
+      const Artists = result;
+
+      musicCardsWrapper.innerHTML = "";
+      musicCardsWrapper.parentElement.querySelector("h3.hdr").innerHTML =
+        "Artists";
+
+      if (Artists.length > 0) {
+        musicWrapper.className = "music-cards-wrapper grd grd-cl-5";
+        Artists.forEach((artist) => {
+          const card = document.createElement("a");
+          card.setAttribute("data-target", `${artist}`);
+          card.className = "card-wrapper artist-card-wrapper backdrop";
+          card.innerHTML = `
+          <i class="fa fa-microphone"></i>
+          <div class="card-wrapper-txt">
+          <h3 id="artist-wrapper" data-target="${music.artist}" class="f-size-reg primary-color">
+                ${artist}
+              </h3>
+          </div>
+        `;
+
+          musicCardsWrapper.append(card);
+        });
+
+        handleMusicPlayer();
+        // handleArtistMusic();
+      } else {
+        musicCardsWrapper.className = "music-cards-wrapper";
+        musicCardsWrapper.innerHTML = `<div class="empty-wrapper"><h3 class="center-align f-size-med">No artists found</p></div>`;
+      }
+    })
+    .finally((err) => {
+      console.log(err);
+    });
+});
+
+// handle fetching and loading of artist music
+const artistWrapper = [...document.querySelectorAll("#artist-wrapper")];
+
+artistWrapper.forEach((artist) => {
+  console.log(artist.getAttribute("data-target"));
+});

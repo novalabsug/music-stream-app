@@ -2,6 +2,7 @@
   "name": "client",
   "version": "1.0.0",
   "description": "music stream",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"

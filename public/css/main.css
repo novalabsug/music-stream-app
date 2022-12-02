@@ -53,11 +53,11 @@ a.section-btn {
 }
 
 .primary-color {
-  color: #fff;
+  color: #eba611;
 }
 
 .secondary-color {
-  color: #000;
+  color: #186b9b;
 }
 
 i {
@@ -165,7 +165,8 @@ h1.f-size-reg,
 h2.f-size-reg,
 h3.f-size-reg,
 h4.f-size-reg,
-h5.f-size-reg {
+h5.f-size-reg,
+span.f-size-reg {
   font-size: 1.2rem;
 }
 
@@ -173,7 +174,8 @@ h1.f-size-med,
 h2.f-size-med,
 h3.f-size-med,
 h4.f-size-med,
-h5.f-size-med {
+h5.f-size-med,
+span.f-size-med {
   font-size: 1.3rem;
 }
 
@@ -181,7 +183,8 @@ h1.f-size-lrg,
 h2.f-size-lrg,
 h3.f-size-lrg,
 h4.f-size-lrg,
-h5.f-size-lrg {
+h5.f-size-lrg,
+span.f-size-lrg {
   font-size: 1.5rem;
 }
 
@@ -189,7 +192,8 @@ h1.f-size-xlrg,
 h2.f-size-xlrg,
 h3.f-size-xlrg,
 h4.f-size-xlrg,
-h5.f-size-xlrg {
+h5.f-size-xlrg,
+span.f-size-xlrg {
   font-size: 2rem;
 }
 
@@ -197,7 +201,8 @@ h1.f-size-xxlrg,
 h2.f-size-xxlrg,
 h3.f-size-xxlrg,
 h4.f-size-xxlrg,
-h5.f-size-xxlrg {
+h5.f-size-xxlrg,
+span.f-size-xxlrg {
   font-size: 2.5rem;
 }
 
@@ -304,6 +309,35 @@ nav.m-navbar {
   border: 0;
 }
 
+nav.dashboard-navbar {
+  height: 100vh;
+}
+
+nav.dashboard-navbar .profile {
+  padding: 2rem 0 1rem 0;
+}
+
+nav.dashboard-navbar .profile .profile-img i {
+  font-size: 3rem;
+  margin: 0 3.5rem;
+}
+
+nav.dashboard-navbar .profile .profile-name {
+  padding: 1rem 0;
+}
+
+nav.dashboard-navbar .profile .profile-name p {
+  font-size: 2rem;
+}
+
+nav.dashboard-navbar .profile a {
+  margin: 0 2rem;
+}
+
+nav.dashboard-navbar ul li i {
+  margin: 0 1rem 0 0;
+}
+
 nav ul {
   padding: 2rem 0;
 }
@@ -323,6 +357,10 @@ nav ul li a {
   font-family: karla-bold;
 }
 
+nav ul li a#artists-btn {
+  cursor: pointer;
+}
+
 #audio-player {
   position: fixed;
   bottom: 1rem;
@@ -331,6 +369,33 @@ nav ul li a {
   border-radius: 1rem;
   padding: 1rem 3rem;
   background: #a59b9b;
+}
+
+#audio-player #audio-player-shrink-btn {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #186b9b;
+}
+
+#audio-player.shrinked {
+  left: auto;
+}
+
+#audio-player.shrinked .now-playing-wrapper {
+  width: 100%;
+}
+
+#audio-player.shrinked .controls-wrapper {
+  visibility: hidden;
+  width: 0;
+}
+
+#audio-player.shrinked .volume-wrapper {
+  visibility: hidden;
+  width: 0;
 }
 
 #audio-player .now-playing-wrapper {
@@ -355,6 +420,7 @@ nav ul li a {
 
 #audio-player .controls-wrapper {
   width: 40%;
+  visibility: visible;
   padding: 0.5rem 0;
 }
 
@@ -398,6 +464,7 @@ nav ul li a {
 }
 
 #audio-player .volume-wrapper {
+  visibility: visible;
   width: 30%;
   padding: 2rem 3rem;
 }
@@ -477,6 +544,19 @@ main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper
   position: relative;
 }
 
+main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper.artist-card-wrapper i {
+  font-size: 6rem;
+  margin: 2rem 3rem 1rem 3rem;
+}
+
+main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper.artist-card-wrapper .card-wrapper-txt {
+  padding: 0.5rem 0.3rem;
+}
+
+main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper.artist-card-wrapper .card-wrapper-txt h3 {
+  cursor: pointer;
+}
+
 main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper:hover i#play-btn {
   visibility: visible;
   -webkit-transform: translate3d(0, 0, 0);
@@ -518,6 +598,7 @@ main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper
 
 main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper .card-wrapper-txt h3 {
   margin: 0.2rem 0;
+  cursor: pointer;
 }
 
 main#account .forms-wrapper {
@@ -566,7 +647,42 @@ main#page-not-found {
   padding: 2rem 2rem 3rem 2rem;
 }
 
+main#dashboard .content {
+  padding: 2rem 3rem;
+  width: 83%;
+}
+
+main#dashboard .content#dashboard section#sec-1 .top-nav {
+  padding: 2rem 0;
+}
+
+main#dashboard .content#dashboard section#sec-1 .top-nav a {
+  font-size: 1.3rem;
+}
+
+main#dashboard .content#dashboard section#sec-1 .top-nav h3 {
+  margin: 0.3rem 0;
+}
+
+main#dashboard .content#add-music section#sec-1 form {
+  padding: 3rem 0;
+}
+
+main#dashboard .content#add-music section#sec-1 form .form-input {
+  padding: 2rem 0;
+}
+
+main#dashboard .content#add-music section#sec-1 form .form-input .input input {
+  width: 100%;
+  border: 1px solid #fff;
+  border-radius: 0.3rem;
+  padding: 0.35rem 1rem;
+  margin: 0.5rem 0;
+}
+
 footer {
+  padding: 2rem 0 3rem 0;
   background-color: #1a1a1a;
+  border-top: 1.2px solid #505050;
 }
 /*# sourceMappingURL=main.css.map */

@@ -1,48 +1,38 @@
-// fetch email
-const email = document.querySelector('.user-profile-info p').innerHTML.trim();
+class HandleHttpRequests {
+  static async handleAddingMusic(form) {
+    const titleErr = form.querySelector(".error.title-error");
+    const artistErr = form.querySelector(".error.artist-error");
+    const albumErr = form.querySelector(".error.album-error");
+    const trackLengthErr = form.querySelector(".error.trackLength-error");
+    const musicFileErr = form.querySelector(".error.musicFile-error");
 
-// fetch info on Events
-const handleEvents = async(email) => {
+    titleErr.innerHTML = "";
+    artistErr.innerHTML = "";
+    albumErr.innerHTML = "";
+    trackLengthErr.innerHTML = "";
+    musicFileErr.innerHTML = "";
+
     try {
-        const res = await fetch('/dashboard', {
-            method: 'POST',
-            body: JSON.stringify({
-                email
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+      const res = await fetch("/fetch/music-data", {
+        method: "POST",
+        body: new FormData(form),
+      });
 
-        const data = await res.json();
-        // fetch section to insert data
-        const secEl = document.querySelector('section#sec-2');
-        let Events = ''
-        console.log(data);
+      const data = await res.json();
 
-        if (data.events) {
-            Events = data.events;
-        }
+      if (data.response) {
+        return location.assign("/dashboard/add-music");
+      }
 
-        if (data.errors) {
-            secEl.innerHTML = `
-            <p class="center-align">You don't have any tickets yet. Let's get started now</p>
-            <a href="/get-started/create" class="btn">Create new event</a>
-            `;
-        }
-
-        // Insert data into section
-        if (Events.length < 1) {
-            secEl.className = "error";
-            secEl.innerHTML = `
-            <p class="center-align">You don't have any tickets yet. Let's get started now</p>
-            <a href="/get-started/create" class="btn">Create new event</a>
-            `;
-        }
-
-    } catch (err) {
-        console.log(err);
+      if (data.errors) {
+        titleErr.innerHTML = `${data.errors.title}`;
+        artistErr.innerHTML = `${data.errors.artist}`;
+        albumErr.innerHTML = `${data.errors.album}`;
+        trackLengthErr.innerHTML = `${data.errors.trackLength}`;
+        musicFileErr.innerHTML = `${data.errors.musicFile}`;
+      }
+    } catch (error) {
+      console.log(error);
     }
+  }
 }
-
-handleEvents(email);
