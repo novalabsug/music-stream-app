@@ -31,7 +31,7 @@ const atlas_URI =
 const URI = "mongodb://127.0.0.1:27017/music-stream";
 
 mongoose
-  .connect(URI, {
+  .connect(atlas_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
