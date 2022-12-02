@@ -6,6 +6,7 @@ import {
   music_search_post,
   addmusic_post,
   artist_fetch_get,
+  artist_music_fetch_post,
 } from "../controller/controller.js";
 const router = Router();
 import multer from "multer";
@@ -32,6 +33,7 @@ router.get("/fetch/music-data", music_fetch_post);
 router.post("/fetch/search-data", music_search_post);
 router.post("/fetch/music-data", multipleUpload, addmusic_post);
 router.get("/fetch/artist-data", artist_fetch_get);
+router.post("/fetch/artist/music-data", artist_music_fetch_post);
 
 // function to generate code
 function genCode(size) {

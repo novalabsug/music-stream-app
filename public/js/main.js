@@ -163,5 +163,25 @@ class HandleHttpRequests {
   /* 
     ----------- FUNCTION -------------------------------------------------------------------------------------------------------------------------------------
   */
-  static async handleLoadingArtisMusicData(artistWrapper) {}
+  static async handleLoadingArtisMusicData(artist) {
+    let result = "";
+
+    try {
+      const res = await fetch("/fetch/artist/music-data", {
+        method: "POST",
+        body: JSON.stringify({ artist }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      data.music ? (result = data.music) : (result = "");
+    } catch (error) {
+      console.log(error);
+    }
+
+    return result;
+  }
 }

@@ -27,7 +27,11 @@ HandleHttpRequests.handleFetchingData()
         musicWrapper.append(card);
       });
 
+      // handle music player functionality
       handleMusicPlayer();
+
+      // handle artist music functionality
+      handleLoadingArtistMusic();
     } else {
       musicWrapper.className = "music-cards-wrapper";
       musicWrapper.innerHTML = `<div class="empty-wrapper"><h3 class="center-align f-size-med">No music currently</p></div>`;
@@ -59,7 +63,7 @@ searchForm.addEventListener("submit", (e) => {
           card.setAttribute("data-target", `${music.filename}`);
           card.innerHTML = `
         <i class="fa fa-play" id="play-btn" data-id="${index}"></i>
-        <img src="/images/${music.album}" alt="" id="album-art" srcset="" />
+        <img src="/files/${music.album}" alt="" id="album-art" srcset="" />
         <div class="card-wrapper-txt">
           <a>
           <h3 id="artist-wrapper" data-target="${music.artist}" class="primary-color">
@@ -73,7 +77,10 @@ searchForm.addEventListener("submit", (e) => {
           musicWrapper.append(card);
         });
 
+        // handle music player functionality
         handleMusicPlayer();
+
+        //// -------------
       } else {
         musicWrapper.className = "music-cards-wrapper";
         musicWrapper.innerHTML = `<div class="empty-wrapper"><h3 class="center-align f-size-med">No search results found</p></div>`;
@@ -123,7 +130,7 @@ artistBtn.addEventListener("click", () => {
           card.innerHTML = `
           <i class="fa fa-microphone"></i>
           <div class="card-wrapper-txt">
-          <h3 id="artist-wrapper" data-target="${music.artist}" class="f-size-reg primary-color">
+          <h3 id="artist-wrapper" data-target="${artist}" class="f-size-reg primary-color">
                 ${artist}
               </h3>
           </div>
@@ -132,21 +139,69 @@ artistBtn.addEventListener("click", () => {
           musicCardsWrapper.append(card);
         });
 
+        // handle music player functionality
         handleMusicPlayer();
-        // handleArtistMusic();
+
+        // handle artist music functionality
+        handleLoadingArtistMusic();
       } else {
         musicCardsWrapper.className = "music-cards-wrapper";
         musicCardsWrapper.innerHTML = `<div class="empty-wrapper"><h3 class="center-align f-size-med">No artists found</p></div>`;
       }
     })
-    .finally((err) => {
+    .catch((err) => {
       console.log(err);
     });
 });
 
 // handle fetching and loading of artist music
-const artistWrapper = [...document.querySelectorAll("#artist-wrapper")];
+function handleLoadingArtistMusic() {
+  const artistWrapper = [...document.querySelectorAll("#artist-wrapper")];
+  const musicCardsWrapper = document.querySelector(
+    ".sec-1 .music-cards-wrapper"
+  );
 
-artistWrapper.forEach((artist) => {
-  console.log(artist.getAttribute("data-target"));
-});
+  artistWrapper.forEach((artist) => {
+    artist.addEventListener("click", () => {
+      HandleHttpRequests.handleLoadingArtisMusicData(
+        artist.getAttribute("data-target")
+      )
+        .then((result) => {
+          let Music = result;
+
+          musicCardsWrapper.innerHTML = "";
+          musicCardsWrapper.className = "music-cards-wrapper";
+          musicCardsWrapper.parentElement.querySelector(
+            "h3.hdr"
+          ).innerHTML = `artist - ${artist.getAttribute("data-target")}`;
+
+          Music.forEach((music, index) => {
+            const card = document.createElement("div");
+            card.className =
+              "card-wrapper music-artist-card-wrapper backdrop flx";
+            card.setAttribute("data-target", `${music.filename}`);
+            card.innerHTML = `
+            <i class="fa fa-play" id="play-btn" data-id="${index}"></i>
+            <img src="/files/${music.album}" alt="" id="album-art" srcset="" />
+            <div class="card-wrapper-txt flx">
+              <a>
+                <h3 id="artist-wrapper" data-target="${music.artist}" class="primary-color">
+                  ${music.artist}
+                </h3>
+              </a>
+              <p id="title-wrapper">${music.title}</p>
+            </div>
+          `;
+
+            musicCardsWrapper.append(card);
+          });
+
+          // handle music player functionality
+          handleMusicPlayer();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  });
+}

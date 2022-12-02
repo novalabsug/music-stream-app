@@ -557,6 +557,40 @@ main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper
   cursor: pointer;
 }
 
+main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper.music-artist-card-wrapper {
+  width: 90%;
+  margin: 0.5rem 0;
+}
+
+main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper.music-artist-card-wrapper i {
+  position: static !important;
+  top: auto;
+  left: auto;
+  font-size: 1.3rem;
+  border-radius: 0 !important;
+  margin: 1rem 2rem;
+  padding: 0 !important;
+  background: none !important;
+  cursor: pointer !important;
+  visibility: visible !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+          transform: translate3d(0, 0, 0) !important;
+}
+
+main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper.music-artist-card-wrapper img {
+  height: 50px;
+  width: 50px;
+  margin: 0 5rem;
+}
+
+main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper.music-artist-card-wrapper .card-wrapper-txt {
+  padding: 0.5rem 0;
+}
+
+main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper.music-artist-card-wrapper .card-wrapper-txt a {
+  margin: 0 5rem;
+}
+
 main#landing-page .main-content section.sec-1 .music-cards-wrapper .card-wrapper:hover i#play-btn {
   visibility: visible;
   -webkit-transform: translate3d(0, 0, 0);

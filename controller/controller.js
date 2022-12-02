@@ -178,3 +178,16 @@ export const artist_fetch_get = async (req, res) => {
     res.status(400).json({ errors });
   }
 };
+
+export const artist_music_fetch_post = async (req, res) => {
+  try {
+    const { artist } = req.body;
+
+    const music = await Music.find({ artist });
+
+    res.status(200).json({ music });
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+};

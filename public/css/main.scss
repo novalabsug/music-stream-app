@@ -218,6 +218,34 @@ main {
                   }
                 }
               }
+              &.music-artist-card-wrapper {
+                width: 90%;
+                margin: 0.5rem 0;
+                i {
+                  position: static !important;
+                  top: auto;
+                  left: auto;
+                  font-size: 1.3rem;
+                  border-radius: 0 !important;
+                  margin: 1rem 2rem;
+                  padding: 0 !important;
+                  background: none !important;
+                  cursor: pointer !important;
+                  visibility: visible !important;
+                  transform: translate3d(0, 0, 0) !important;
+                }
+                img {
+                  height: 50px;
+                  width: 50px;
+                  margin: 0 5rem;
+                }
+                .card-wrapper-txt {
+                  padding: 0.5rem 0;
+                  a {
+                    margin: 0 5rem;
+                  }
+                }
+              }
               &:hover {
                 i {
                   &#play-btn {
